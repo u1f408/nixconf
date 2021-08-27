@@ -1,0 +1,4 @@
+[submodule "config/trusted"]
+	path = config/trusted
+	branch = main
+	url = git@github.com:u1f408/nixconf-trusted.git
