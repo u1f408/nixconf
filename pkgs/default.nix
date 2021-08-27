@@ -13,9 +13,10 @@ let
 
   pkgs = import sources.nixpkgs {
     overlays = [
-      (import (sources.nixexprs + "/overlay.nix"))
       (import (sources.arc-nixexprs + "/overlay.nix"))
       (import (sources.kat-nixexprs + "/overlay.nix"))
+      (import (sources.nixexprs + "/overlay.nix"))
+      (import ./katlib)
       overlay
     ];
 

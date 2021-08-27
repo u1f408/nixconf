@@ -9,6 +9,17 @@ with lib;
     services.matrix
   ];
 
+  deploy.tf = {
+    resources.saturn = {
+      provider = "null";
+      type = "resource";
+      connection = {
+        host = "root@saturn.smol.systems";
+        port = 62954;
+      };
+    };
+  };
+
   boot.kernelPackages = pkgs.linuxPackages;
 
   networking.hostId = "d39a77fb";
