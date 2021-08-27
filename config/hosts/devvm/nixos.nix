@@ -12,6 +12,17 @@ with lib;
     users.iris.guiFull
   ];
 
+  deploy.tf = {
+    resources.devvm = {
+      provider = "null";
+      type = "resource";
+      connection = {
+        host = "root@devvm";
+        port = 62954;
+      };
+    };
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages;

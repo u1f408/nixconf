@@ -12,6 +12,17 @@ with lib;
     users.iris.dev
   ];
 
+  deploy.tf = {
+    resources.ruby = {
+      provider = "null";
+      type = "resource";
+      connection = {
+        host = "root@ruby";
+        port = 62954;
+      };
+    };
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.supportedFilesystems = [ "zfs" "vfat" ];

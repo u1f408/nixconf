@@ -10,6 +10,17 @@ with lib;
     users.iris.guiFull
   ];
 
+  deploy.tf = {
+    resources.pluto = {
+      provider = "null";
+      type = "resource";
+      connection = {
+        host = "root@pluto";
+        port = 62954;
+      };
+    };
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages;

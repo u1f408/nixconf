@@ -12,6 +12,17 @@ with lib;
     users.iris.dev
   ];
 
+  deploy.tf = {
+    resources.luka = {
+      provider = "null";
+      type = "resource";
+      connection = {
+        host = "root@luka";
+        port = 62954;
+      };
+    };
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
   boot.initrd.supportedFilesystems = [ "zfs" "vfat" ];
