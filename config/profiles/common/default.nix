@@ -10,5 +10,6 @@
     ./nix.nix
     ./access.nix
     ./packages.nix
+    ./machine-cert.nix
   ];
 }
