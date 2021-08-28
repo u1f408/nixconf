@@ -2,6 +2,7 @@
 
 {
   networking = {
+    nameservers = [ "1.1.1.1" "1.0.0.1" ];
     networkmanager.enable = lib.mkForce false;
     dhcpcd.enable = lib.mkForce false;
 
