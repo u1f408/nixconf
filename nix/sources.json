@@ -65,10 +65,10 @@
         "homepage": null,
         "owner": "u1f408",
         "repo": "nixexprs",
-        "rev": "0b5f19891110d26f02306ff82a2ab538e3ba9061",
-        "sha256": "1s5gqp8n0a5ai398hyfhmj5s6ajfcjpkapfl51fx22156fc9d8hn",
+        "rev": "ec924af4fb752a1b51f57d9450a66eb0eb792b35",
+        "sha256": "0w7if8m4gg38d90gdk8pcs36q03bzrr8rdyxanknj7bvrsq4xz6h",
         "type": "tarball",
-        "url": "https://github.com/u1f408/nixexprs/archive/0b5f19891110d26f02306ff82a2ab538e3ba9061.tar.gz",
+        "url": "https://github.com/u1f408/nixexprs/archive/ec924af4fb752a1b51f57d9450a66eb0eb792b35.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
