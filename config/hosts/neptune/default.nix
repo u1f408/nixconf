@@ -7,6 +7,8 @@ with lib;
     ./hw.nix
     ./net.nix
     profiles.common
+    services.nginx
+    services.jellyfin
   ];
 
   boot.cleanTmpDir = true;
