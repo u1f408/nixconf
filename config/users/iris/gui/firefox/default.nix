@@ -24,16 +24,19 @@
     };
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      bitwarden
+      facebook-container
+      foxyproxy-standard
+      https-everywhere
+      multi-account-containers
+      privacy-badger
+      stylus
       tree-style-tab
       ublock-origin
-      https-everywhere
-      privacy-badger
-      multi-account-containers
-      facebook-container
-      stylus
       violentmonkey
-      foxyproxy-standard
-      bitwarden
+      wayback-machine
+      zoom-page-we
+      zoom-redirector
     ];
   };
 }
