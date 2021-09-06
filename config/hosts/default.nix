@@ -43,6 +43,12 @@ let
         port = 62954;
       };
     };
+    venus = {
+      ssh = {
+        host = "root@venus.smol.systems";
+        port = 62954;
+      };
+    };
   };
 
   hostConfig = hostName:
