@@ -11,5 +11,6 @@
     ./access.nix
     ./packages.nix
     ./machine-cert.nix
+    ./tailscale.nix
   ];
 }
