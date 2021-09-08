@@ -9,6 +9,7 @@ with lib;
     profiles.gui
     profiles.sway
     users.iris.guiFull
+    users.iris.workstation
     users.iris.dev
   ];
 

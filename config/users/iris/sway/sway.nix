@@ -47,7 +47,7 @@ let
 in
 {
   home.sessionVariables = {
-    WLR_DRM_DEVICES = "/dev/dri/card0";
+    WLR_DRM_NO_MODIFIERS = "1";
   };
 
   home.packages = with pkgs; [
