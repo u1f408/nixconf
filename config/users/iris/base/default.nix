@@ -6,6 +6,8 @@
     ./packages.nix
     ./shell.nix
     ./bat.nix
+    ./neovim
+    ./tmux.nix
   ];
 
   home.sessionVariables = {
