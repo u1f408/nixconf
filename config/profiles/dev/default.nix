@@ -1,7 +1,10 @@
 { config, lib, pkgs, meta, ... }:
 
 {
-  imports = [ ];
+  imports = [
+    ./earmms-keyderiv.nix
+    ./docker.nix
+  ];
 
   services.postgresql.enable = true;
   services.redis.enable = true;
