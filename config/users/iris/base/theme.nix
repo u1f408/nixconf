@@ -4,7 +4,7 @@ let
   font' = { name = "Comic Code"; size = 10.0; };
   base16' = {
     light = "summerfruit.summerfruit-light";
-    dark = "summerfruit.summerfruit-dark";
+    dark = "porple.porple";
   };
 
 in
@@ -14,7 +14,7 @@ in
     schemes = [ base16'.light base16'.dark ];
     alias = {
       inherit (base16') light dark;
-      default = lib.mkDefault base16'.light;
+      default = lib.mkDefault base16'.dark;
     };
   };
 
