@@ -82,5 +82,11 @@
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/400b6feb49104e764eb034bd4840446199c6beef.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "papa-nixexprs": {
+        "branch": "main",
+        "repo": "https://gitlab.com/againstprisons/nixexprs.git",
+        "rev": "8992d33f703e07e1a6356191c7ea2d180561f1c7",
+        "type": "git"
     }
 }

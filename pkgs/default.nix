@@ -16,6 +16,7 @@ let
       (import (sources.nixexprs + "/overlay.nix"))
       (import (sources.arc-nixexprs + "/overlay.nix"))
       (import (sources.kat-nixexprs + "/overlay.nix"))
+      (import (sources.papa-nixexprs + "/overlay.nix"))
       overlay
     ];
 
