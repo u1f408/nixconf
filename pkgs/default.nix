@@ -7,6 +7,7 @@ let
       pkgs = self;
     };
 
+    iris-screenshot = self.callPackage ./iris-screenshot { };
     comic-code = self.callPackage ./comic-code { };
     hikari-session = self.callPackage ./hikari-session { };
   };

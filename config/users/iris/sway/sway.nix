@@ -58,6 +58,7 @@ in
     jq
     wofi
     wmctrl
+    iris-screenshot
   ];
 
   systemd.user.services.swayidle = {
@@ -124,6 +125,10 @@ in
         let
           pactl = "${config.home.nixosConfig.hardware.pulseaudio.package or pkgs.pulseaudio}/bin/pactl";
           dmenu = "${pkgs.wofi}/bin/wofi -idbt ${pkgs.alacritty}/bin/alacritty -s ~/.config/wofi/wofi.css -p '' -W 25%";
+
+          ss_global = "${pkgs.iris-screenshot}/bin/iris-ss -g -n -ci";
+          ss_output = "${pkgs.iris-screenshot}/bin/iris-ss -o -n -ci";
+          ss_window = "${pkgs.iris-screenshot}/bin/iris-ss -w -n -ci";
         in
         {
           modes = {
@@ -145,7 +150,7 @@ in
           input = {
             "*" = {
               xkb_layout = "us";
-	      xkb_variant = "dvorak";
+              xkb_variant = "dvorak";
               xkb_options = "compose:caps";
             };
           };
@@ -239,6 +244,11 @@ in
             "XF86AudioMute+Shift" = "exec --no-startup-id ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle";
             "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 5";
             "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 5";
+
+            # screenshots
+            "${cfg.modifier}+Print" = "exec --no-startup-id ${ss_window}";
+            "${cfg.modifier}+Shift+Print" = "exec --no-startup-id ${ss_output}";
+            "${cfg.modifier}+Mod1+Print" = "exec --no-startup-id ${ss_global}";
 
             # dmenu
             "${cfg.modifier}+r" = "exec ${cfg.menu}";
