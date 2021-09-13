@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+# vim: set syntax=bash noexpandtab :
+
+SCRIPT_NAME="$0"
+
+function usage {
+	echo "usage: ${SCRIPT_NAME} [OPTIONS]"
+	echo
+	echo "options:"
+	echo -e "\t-g\n\t\tcapture all outputs"
+	echo -e "\t-w\n\t\tselect a window to capture"
+	echo -e "\t-o\n\t\tselect an output to capture"
+	echo -e "\t-n\n\t\tsend a notification with the capture filename"
+	echo -e "\t-cf\n\t\tcopy the output filename to the clipboard"
+	echo -e "\t-ci\n\t\tcopy the output image to the clipboard"
+	echo -e "\t-f <FILENAME>\n\t\tcapture to FILENAME"
+}
+
+function generateFilename {
+	echo -ne "$(date -Ins).png"
+}
+
+OUTPUT_BASEDIR="${XDG_PICTURES_DIR:-${HOME}/Pictures}"
+test -d "${OUTPUT_BASEDIR}/Screenshots" && OUTPUT_BASEDIR="${OUTPUT_BASEDIR}/Screenshots"
+
+### Default options
+FILENAME="${OUTPUT_BASEDIR}/$(generateFilename)"
+SUBJECT=global
+CLIPBOARD=no
+NOTIFY=no
+
+### Gather command-line options
+while test $# -gt 0
+do
+	case "$1"
+	in
+		-g)
+			SUBJECT=global
+			shift
+			;;
+
+		-w)
+			SUBJECT=window
+			shift
+			;;
+
+		-o)
+			SUBJECT=output
+			shift
+			;;
+
+		-n)
+			NOTIFY=yes
+			shift
+			;;
+
+		-cf)
+			CLIPBOARD=filename
+			shift
+			;;
+
+		-ci)
+			CLIPBOARD=image
+			shift
+			;;
+
+		-f)
+			shift
+			FILENAME="$1"
+			shift
+			;;
+
+		-h)
+			usage
+			exit 0
+			;;
+
+		*)
+			echo "unknown option: $1"
+			exit 1
+			;;
+	esac
+done
+
+CAPTURE_RETCODE=127
+case "${SUBJECT}"
+in
+	global)
+		grim "${FILENAME}"
+		CAPTURE_RETCODE=$?
+		;;
+
+	window)
+		grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" "${FILENAME}"
+		CAPTURE_RETCODE=$?
+		;;
+
+	output)
+		grim -g "$(swaymsg -t get_outputs | jq -r '.. | select(.active?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)" "${FILENAME}"
+		CAPTURE_RETCODE=$?
+		;;
+esac
+
+### Exit if capture failed
+
+if test "${CAPTURE_RETCODE}" -ne 0
+then
+	if test "${NOTIFY}" = "yes"
+	then
+		notify-send "iris-ss: capture failed"
+	fi
+
+	echo "iris-ss: capture failed" >&2
+	exit 2
+fi
+
+### Clipboard
+
+if test "${CLIPBOARD}" = "filename"
+then
+	wl-copy "${FILENAME}"
+fi
+
+if test "${CLIPBOARD}" = "image"
+then
+	wl-copy < "${FILENAME}"
+fi
+
+### Notify, if enabled
+
+if test "${NOTIFY}" = "yes"
+then
+	notify-send "iris-ss: captured screenshot" "${FILENAME}"
+fi
+
+### Echo the filename
+
+echo "${FILENAME}"
+
