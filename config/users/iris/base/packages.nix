@@ -2,8 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    comic-code
-
     htop
     bat
     exa
