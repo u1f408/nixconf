@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     comic-code
+    tewi-font
 
     htop
     bat

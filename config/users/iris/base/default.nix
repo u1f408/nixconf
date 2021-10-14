@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -12,5 +12,6 @@
 
   home.sessionVariables = {
     "WINIT_HIDPI_FACTOR" = "1";
+    "EDITOR" = "${pkgs.neovim}/bin/neovim";
   };
 }

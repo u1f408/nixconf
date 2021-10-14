@@ -9,7 +9,12 @@
 
     gajim
     mumble
-
+    hexchat
+    
+    aseprite-unfree
     wineWowPackages.stable
+    winetricks
+
+    icewm-xephyr
   ];
 }

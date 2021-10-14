@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  home.sessionVariables = {
+    "BROWSER" = "${pkgs.firefox}/bin/firefox";
+  };
+
   programs.firefox = {
     enable = true;
 

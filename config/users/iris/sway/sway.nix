@@ -153,6 +153,10 @@ in
               xkb_variant = "dvorak";
               xkb_options = "compose:caps";
             };
+            
+            "9580:109:HUION_Huion_Tablet_GS1161" = { map_to_output = "DP-1"; };
+            "9580:109:HUION_Huion_Tablet_GS1161_Pen" = { map_to_output = "DP-1"; };
+            "9580:109:HUION_Huion_Tablet_GS1161_Pad" = { map_to_output = "DP-1"; };
           };
 
           fonts = {

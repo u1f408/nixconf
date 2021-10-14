@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  font' = { name = "Comic Code"; size = 10.0; };
+  font' = { name = "tewi"; size = 9.0; };
   base16' = {
     light = "summerfruit.summerfruit-light";
     dark = "porple.porple";

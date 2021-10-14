@@ -3,6 +3,7 @@
 {
   imports = [
     ./firefox
+    ./thunderbird.nix
     ./alacritty.nix
     ./packages.nix
   ];
