@@ -8,6 +8,7 @@ let
     };
 
     iris-screenshot = self.callPackage ./iris-screenshot { };
+    icewm-xephyr = self.callPackage ./icewm-xephyr { };
     comic-code = self.callPackage ./comic-code { };
     hikari-session = self.callPackage ./hikari-session { };
   };
