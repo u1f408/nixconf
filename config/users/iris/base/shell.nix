@@ -13,7 +13,12 @@
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
-    settings = { character.symbol = "λ"; };
+    settings = {
+      character = {
+        success_symbol = "[λ](green)";
+        error_symbol = "[λ](bold red)";
+      };
+    };
   };
 
   programs.direnv = {

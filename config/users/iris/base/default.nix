@@ -4,6 +4,7 @@
   imports = [
     ./theme.nix
     ./packages.nix
+    ./fonts.nix
     ./shell.nix
     ./bat.nix
     ./neovim
