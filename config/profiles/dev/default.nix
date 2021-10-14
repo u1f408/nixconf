@@ -4,6 +4,7 @@
   imports = [
     ./earmms-keyderiv.nix
     ./docker.nix
+    ./libvirt.nix
   ];
 
   services.postgresql.enable = true;
