@@ -31,7 +31,7 @@
     // (let
       mkNixosSystem = hostname: system:
         let
-          meta = self.legacyPackages.${system}.meta;
+          meta = self.legacyPackages.${system};
           pkgs = import ./overlays { inherit inputs system; };
 
         in nixpkgs.lib.nixosSystem rec {

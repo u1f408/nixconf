@@ -31,8 +31,4 @@ let
 
   meta = xarg // { inherit hosts; };
 
-in rec {
-  root = ./.;
-  inherit meta;
-}
-
+in meta
