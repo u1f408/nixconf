@@ -4,6 +4,9 @@
   imports = [
     ./neovim.nix
     ./git.nix
+    ./shell.nix
+    ./bat.nix
+    ./tmux.nix
   ];
 
   home.sessionVariables = {
