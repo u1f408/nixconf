@@ -1,0 +1,3 @@
+rec {
+  base = ./base.nix;
+}
