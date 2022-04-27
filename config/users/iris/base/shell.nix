@@ -3,6 +3,11 @@
 {
   programs.command-not-found.enable = false;
 
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+  };
+
   programs.fish = {
     enable = true;
 
