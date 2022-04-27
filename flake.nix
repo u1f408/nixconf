@@ -5,7 +5,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     nur = {
       url = "github:nix-community/NUR";
@@ -22,9 +26,7 @@
 
   outputs = { self, flake-utils, nixpkgs, nur, ... }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in rec {
+      rec {
         legacyPackages = import ./outputs.nix { inherit inputs system; };
       }
     ))
@@ -34,13 +36,12 @@
           inherit (self.legacyPackages.${system}) meta pkgs;
 
         in nixpkgs.lib.nixosSystem rec {
-          inherit system;
+          inherit system pkgs;
 
           specialArgs = {
             root = ./.;
             inherit inputs;
             inherit meta;
-            inherit pkgs;
           };
 
           modules = [

@@ -4,8 +4,6 @@ let
   pkgs = import ./overlays { inherit inputs system; };
   inherit (pkgs) lib;
 
-  evalConfig = import (inputs.nixpkgs + "/nixos/lib/eval-config.nix");
-
   xargNames = lib.unique (lib.folderList ./config [ "hosts" ]);
   xarg = lib.mapListToAttrs
     (folder: lib.nameValuePair folder (lib.domainMerge {
@@ -17,7 +15,7 @@ let
   hostConfig = hostName:
     { ... }: {
       imports = [
-        "${toString ./config/hosts}/${hostName}"
+        (./config/hosts + "/${hostName}")
         meta.profiles.common
       ];
 

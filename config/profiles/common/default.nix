@@ -2,6 +2,8 @@
 
 {
   imports = with meta; [
+    ./home.nix
+
     users.iris.base
   ];
 

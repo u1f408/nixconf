@@ -9,7 +9,6 @@ with lib;
       specialArgs = {
         inherit inputs pkgs;
         superConfig = config;
-        modulesPath = inputs.home-manager + "/modules";
       };
     });
   };
