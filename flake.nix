@@ -55,6 +55,7 @@
       in
       rec {
         nixosConfigurations.triad = mkNixosSystem "triad" "x86_64-linux";
+        nixosConfigurations.yellow = mkNixosSystem "yellow" "x86_64-linux";
       }
     );
 }
