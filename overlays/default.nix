@@ -24,4 +24,5 @@ let
     };
   };
 
-in pkgs
+in
+pkgs

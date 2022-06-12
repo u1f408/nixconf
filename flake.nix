@@ -10,7 +10,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,27 +30,31 @@
         legacyPackages = import ./outputs.nix { inherit inputs system; };
       }
     ))
-    // (let
-      mkNixosSystem = hostname: system:
-        let
-          inherit (self.legacyPackages.${system}) meta pkgs;
+    // (
+      let
+        mkNixosSystem = hostname: system:
+          let
+            inherit (self.legacyPackages.${system}) meta pkgs;
 
-        in nixpkgs.lib.nixosSystem rec {
-          inherit system pkgs;
+          in
+          nixpkgs.lib.nixosSystem rec {
+            inherit system pkgs;
 
-          specialArgs = {
-            root = ./.;
-            inherit inputs;
-            inherit meta;
+            specialArgs = {
+              root = ./.;
+              inherit inputs;
+              inherit meta;
+            };
+
+            modules = [
+              meta.modules.nixos
+              meta.hosts.${hostname}
+            ];
           };
 
-          modules = [
-            meta.modules.nixos
-            meta.hosts.${hostname}
-          ];
-        };
-
-    in rec {
-      nixosConfigurations.triad = mkNixosSystem "triad" "x86_64-linux"; 
-    });
+      in
+      rec {
+        nixosConfigurations.triad = mkNixosSystem "triad" "x86_64-linux";
+      }
+    );
 }

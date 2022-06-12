@@ -20,6 +20,7 @@
 
       # set window title
       set-option -g set-titles on
+      set-option -g set-titles-string "#(echo $USER)@#H #S:#I #W"
 
       # make <Prefix>/ enter search mode
       unbind-key '/'
@@ -37,6 +38,21 @@
 
       # make <Prefix>m reload the tmux config
       bind-key r source-file ~/.config/tmux/tmux.conf
+
+      # status configuration
+      set-option -g status on
+      set-option -g status-interval 5
+      set-option -g status-position top
+      set-option -g status-justify absolute-centre
+      set-option -g status-left-length 32
+      set-option -g status-right-length 64
+      set-option -g status-style 'bg=colour6 fg=colour0 dim'
+      set-option -g status-left ' #(echo $USER)@#H [#S] '
+      set-option -g status-right ' %a %Y-%m-%d %H:%M %Z '
+      set-window-option -g window-status-bell-style 'bg=colour1 fg=colour7 bold'
+      set-window-option -g window-status-current-style 'bg=colour2 fg=colour0'
+      set-window-option -g window-status-current-format '[#F#I:#W]'
+      set-window-option -g window-status-format '#F#I:#W'
     '';
   };
 }

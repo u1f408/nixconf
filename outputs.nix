@@ -29,7 +29,8 @@ let
 
   meta = xarg // { inherit hosts; };
 
-in rec {
+in
+rec {
   inherit pkgs;
   inherit meta;
 }

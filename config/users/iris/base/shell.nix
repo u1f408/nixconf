@@ -5,15 +5,33 @@
 
   programs.exa = {
     enable = true;
-    enableAliases = true;
+    enableAliases = false;
   };
 
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = ''
-      set fish_greeting ""
+    shellInit = ''
+      set -Ue fish_user_paths
+      set -gx fish_user_paths ~/.local/bin
     '';
+
+    functions = {
+      fish_greeting = ''
+        uname -a
+      '';
+
+      __fish_command_not_found_handler = {
+        body = "__fish_default_command_not_found_handler $argv[1]";
+        onEvent = "fish_command_not_found";
+      };
+    };
+
+    shellAliases = {
+      ls = "exa --group-directories-first";
+      ll = "ls -l --git";
+      la = "ll -a";
+    };
   };
 
   programs.direnv = {
@@ -42,5 +60,12 @@
         error_symbol = "[🗴](bold red)";
       };
     };
+  };
+
+  programs.keychain = {
+    enable = true;
+    keys = [ "id_rsa" "id_ed25519" ];
+    inheritType = "any";
+    extraFlags = [ "--confirm" "--quick" "--quiet" ];
   };
 }

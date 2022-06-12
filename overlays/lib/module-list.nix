@@ -24,4 +24,5 @@ let
         value = if (isFunction m) && !importAll then value else m;
       })
     files;
-in (listToAttrs modules)
+in
+(listToAttrs modules)

@@ -9,4 +9,5 @@ let
     src = ./.;
   };
 
-in nixfiles.defaultNix.inputs
+in
+nixfiles.defaultNix.inputs

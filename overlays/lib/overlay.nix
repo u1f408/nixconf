@@ -22,4 +22,5 @@ let
       domainMerge = import ./domain-merge.nix { inherit lib; };
     };
 
-in iris
+in
+iris
