@@ -19,7 +19,10 @@
   iris = {
     enabledUsers = [ "iris" ];
     defaultSystemPackages = true;
-    gui.enable = false;
+    gui = {
+      enable = true;
+      environment = lib.mkForce null;
+    };
   };
 
   time.timeZone = "Pacific/Auckland";

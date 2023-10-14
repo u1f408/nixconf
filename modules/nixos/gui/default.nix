@@ -59,7 +59,7 @@ in
       };
     })
 
-    (mkIf (cfg.environment != "gnome") {
+    (mkIf (cfg.environment != null && cfg.environment != "gnome") {
       services.xserver.displayManager.lightdm = {
         enable = true;
         greeters.gtk.enable = true;
