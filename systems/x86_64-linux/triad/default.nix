@@ -22,6 +22,7 @@
     gui.enable = false;
   };
 
+  time.timeZone = "Pacific/Auckland";
   security.sudo.wheelNeedsPassword = false;
   system.stateVersion = "23.05";
 }
