@@ -21,7 +21,7 @@
     defaultSystemPackages = true;
     gui = {
       enable = true;
-      environment = lib.mkForce null;
+      environment = lib.mkForce "none";
     };
   };
 

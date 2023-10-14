@@ -7,14 +7,9 @@
 
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
-    ./module.nix
+    ./hm.nix
+    ./packages.nix
   ];
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-  };
 
   nix = {
     package = pkgs.nix;

@@ -14,7 +14,11 @@ in
 {
   options = {
     iris = {
-      defaultSystemPackages = mkEnableOption (mdDoc "default system package set");
+      defaultSystemPackages = mkOption {
+        type = types.bool;
+        default = true;
+        description = mdDoc "Enable default system package set";
+      };
     };
   };
 

@@ -16,8 +16,8 @@ in
     iris.gui = {
       enable = mkEnableOption "GUI configuration";
       environment = mkOption {
-        type = with types; nullOr (enum [ "gnome" ]);
-        default = null;
+        type = types.enum [ "none" "gnome" ];
+        default = "none";
         description = mdDoc "The desktop environment to use";
       };
     };
@@ -59,7 +59,7 @@ in
       };
     })
 
-    (mkIf (cfg.environment != null && cfg.environment != "gnome") {
+    (mkIf (cfg.environment != "none" && cfg.environment != "gnome") {
       services.xserver.displayManager.lightdm = {
         enable = true;
         greeters.gtk.enable = true;
