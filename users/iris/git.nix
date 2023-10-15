@@ -17,6 +17,7 @@
       ll = "log --oneline --graph";
       last = "log -1 HEAD --stat";
       undo = "reset HEAD~1 --mixed";
+      cached = "diff --cached";
     };
 
     extraConfig = {
