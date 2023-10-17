@@ -14,6 +14,6 @@ in rec {
     shell = pkgs.bash;
     useDefaultShell = false;
     extraGroups = adminGroups ++ [ ];
-    hashedPassword = "$y$j9T$lM8YpVHfRx4MX4/fsuZIq.$k2kmD/rKDYxrxqtEL/WZXo2zYsutuNRo.4cDJtL0h87";
+    hashedPassword = "$y$j9T$TxgF7gWLmRwj1Hb8lVN4D1$UaN60ZVUnlxshvmny38IvZbYrwu2DPja.uLNVPRwrK5";
   };
 }

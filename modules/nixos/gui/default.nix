@@ -48,6 +48,21 @@ in
       };
     }
 
+    (mkIf (cfg.environment != "none") {
+      services.xserver = {
+        enable = true;
+        libinput.enable = true;
+      };
+
+      sound.enable = true;
+      hardware.pulseaudio.enable = false;
+      services.pipewire = {
+        enable = true;
+        wireplumber.enable = true;
+        pulse.enable = true;
+      };
+    })
+
     (mkIf (cfg.environment == "gnome") {
       services.xserver.displayManager.gdm = {
         enable = true;

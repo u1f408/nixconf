@@ -38,8 +38,9 @@
   programs.keychain = {
     enable = true;
     enableBashIntegration = true;
-    extraFlags = [ "--quiet" ];
+    extraFlags = [ "--quiet" "--nogui" ];
     inheritType = "local";
+    keys = [ "id_rsa" "id_ed25519" ];
   };
 
   programs.bat = {
