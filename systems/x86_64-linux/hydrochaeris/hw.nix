@@ -17,7 +17,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" "sd_mod" "nvme" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "usbhid" "usb_storage" "sd_mod" "nvme" ];
   boot.initrd.luks = {
     reusePassphrases = true;
     devices.cryptroot.device = "/dev/disk/by-uuid/4a975b7c-8d5e-4592-a014-0988a0152d49";

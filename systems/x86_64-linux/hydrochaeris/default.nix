@@ -19,6 +19,10 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    krita
+  ];
+
   networking = {
     hostName = "hydrochaeris";
     hostId = "a77c3b92";
