@@ -13,5 +13,7 @@
 
   home.packages = with pkgs; [
     figlet
+    remmina
+    foliate
   ];
 }

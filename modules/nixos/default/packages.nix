@@ -29,6 +29,7 @@ in
       ksh
       tmux
       htop
+      mosh
       minicom
     ]);
   };

@@ -24,6 +24,13 @@
       init.defaultBranch = "main";
       url."ssh://git@github.com/".pushInsteadOf = "https://github.com/";
       url."ssh://git@git.sr.ht/".pushInsteadOf = "https://git.sr.ht/";
+
+      diff.noprefix = "true";
+      diff.colormoved = "default";
+      diff.colormovedws = "allow-indentation-change";
+
+      remote.origin.fetch = "+refs/notes/*:refs/notes/*";
+      notes.displayRef = "refs/notes/*";
     };
   };
 }
