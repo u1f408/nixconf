@@ -16,4 +16,8 @@
     remmina
     foliate
   ];
+
+  home.sessionVariables = {
+    NIX_PATH = "nixpkgs=${toString inputs.nixpkgs}";
+  };
 }
