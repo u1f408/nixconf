@@ -72,6 +72,10 @@ in
       services.xserver.desktopManager.gnome = {
         enable = true;
       };
+
+      services.gnome = {
+        gnome-browser-connector.enable = true;
+      };
     })
 
     (mkIf (cfg.environment != "none" && cfg.environment != "gnome") {

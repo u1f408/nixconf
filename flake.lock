@@ -122,6 +122,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1699675755,
+        "narHash": "sha256-ObWvmUZWDEg0iJgdyRY0lgQfNYueHdqSDQNqXKAXYXo=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "5db81a159b3f381012155430d199808f331011cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -131,6 +146,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nur": "nur",
         "snowfall-lib": "snowfall-lib",
         "wsl": "wsl"
       }

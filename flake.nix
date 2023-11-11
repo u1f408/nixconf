@@ -3,6 +3,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nur.url = "github:nix-community/NUR";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     flake-utils.url = "github:numtide/flake-utils";

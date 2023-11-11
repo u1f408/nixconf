@@ -15,6 +15,8 @@
     figlet
     remmina
     foliate
+    sublime4
+    sublime-merge
   ];
 
   home.sessionVariables = {
