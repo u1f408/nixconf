@@ -46,6 +46,8 @@ in
           ];
         };
       };
+
+      programs.dconf.enable = true;
     }
 
     (mkIf (cfg.environment != "none") {
@@ -63,6 +65,13 @@ in
       };
     })
 
+    (mkIf (cfg.environment != "none" && cfg.environment != "gnome") {
+      services.xserver.displayManager.lightdm = {
+        enable = true;
+        greeters.gtk.enable = true;
+      };
+    })
+
     (mkIf (cfg.environment == "gnome") {
       services.xserver.displayManager.gdm = {
         enable = true;
@@ -75,13 +84,6 @@ in
 
       services.gnome = {
         gnome-browser-connector.enable = true;
-      };
-    })
-
-    (mkIf (cfg.environment != "none" && cfg.environment != "gnome") {
-      services.xserver.displayManager.lightdm = {
-        enable = true;
-        greeters.gtk.enable = true;
       };
     })
   ]);

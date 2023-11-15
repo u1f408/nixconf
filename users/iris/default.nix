@@ -17,9 +17,7 @@
     foliate
     sublime4
     sublime-merge
-  ];
 
-  home.sessionVariables = {
-    NIX_PATH = "nixpkgs=${toString inputs.nixpkgs}";
-  };
+    unstable.lorien
+  ];
 }

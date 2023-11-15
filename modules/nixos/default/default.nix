@@ -2,6 +2,7 @@
 , pkgs
 , inputs
 , system
+, config
 , ...
 }:
 
@@ -30,6 +31,13 @@
       permittedInsecurePackages = [
         "openssl-1.1.1w"
       ];
+
+      packageOverrides = pkgs: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config = config.nixpkgs.config;
+        };
+      };
     };
   };
 }

@@ -13,15 +13,13 @@
   iris = {
     enabledUsers = [ "iris" ];
     defaultSystemPackages = true;
+
     gui = {
       enable = true;
       environment = "gnome";
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    krita
-  ];
 
   networking = {
     hostName = "hydrochaeris";

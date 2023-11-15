@@ -31,6 +31,7 @@ in
       htop
       mosh
       minicom
+      p7zip
     ]);
   };
 }
