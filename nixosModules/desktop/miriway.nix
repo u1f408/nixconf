@@ -37,6 +37,8 @@ in
   environment.systemPackages = with pkgs; [
     ourSwaybg
     unstable.miriway
+    wofi
+    yambar
     grim
     slurp
     xfce.xfce4-appfinder

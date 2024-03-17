@@ -29,6 +29,6 @@ let
 in
 {
   flake.nixosConfigurations = {
-    irisdesk = mkNixOS "irisdesk" "x86_64-linux" {};
+    iris-desktc = mkNixOS "iris-desktc" "x86_64-linux" {};
   };
 }

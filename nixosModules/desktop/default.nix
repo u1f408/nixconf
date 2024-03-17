@@ -15,6 +15,7 @@
   ];
 
   time.timeZone = lib.mkDefault "Pacific/Auckland";
+  security.sudo.wheelNeedsPassword = false;
   environment.systemPackages = with pkgs; [
     remmina
   ];
