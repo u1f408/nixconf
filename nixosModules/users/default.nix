@@ -1,9 +1,14 @@
 { inputs
 , pkgs
+, lib
 , meta
 , ...
 } @ args:
 
+let
+  knownUsers = (import ./users.nix) args;
+
+in
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -18,13 +23,21 @@
     };
   };
 
-  users.users.iris = {
-    uid = 1000;
-    isNormalUser = true;
-    shell = pkgs.bash;
-    extraGroups = [ "wheel" "systemd-journal" ];
-    hashedPassword = "$y$j9T$z7JS6B0cpr3ygE6oILEiW0$InFvGn7wq71.9cwKa6QAkWUGB6/qC6MX8t.VKacpQA7";
-  };
+  users.users =
+    (with lib; (mapAttrs (user: desc: {
+      inherit (desc) uid hashedPassword;
+      isNormalUser = true;
+      shell = if (desc ? shell) then desc.shell else pkgs.bash;
+      openssh.authorizedKeys.keyFiles = [ ./sshKeys/${user} ];
+      extraGroups = mkMerge [
+        (mkIf (desc ? isAdmin) [ "wheel" "systemd-journal" ])
+      ];
+    }) knownUsers)) // {
+      root = {
+        initialHashedPassword = "";
+        openssh.authorizedKeys.keyFiles = with lib; (flatten (attrValues (mapAttrs (user: desc: if desc.isAdmin then [ ./sshKeys/${user} ] else []) knownUsers)));
+      };
+    };
 
-  home-manager.users.iris = (meta.homeConfigurations.iris args);
+  home-manager.users = with lib; (mapAttrs (user: desc: (mkIf desc.useHomeManager (meta.homeConfigurations."${user}" args))) knownUsers);
 }

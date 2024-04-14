@@ -8,6 +8,7 @@
   imports = [
     inputs.home-manager.nixosModules.default
 
+    ./agenix.nix
     ./packages.nix
     ./networking.nix
   ];
