@@ -11,5 +11,8 @@
     mosh
     p7zip
     neofetch
+
+    usbutils
+    pciutils
   ];
 }

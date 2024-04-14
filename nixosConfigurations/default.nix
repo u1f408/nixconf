@@ -30,5 +30,6 @@ in
 {
   flake.nixosConfigurations = {
     iris-desktc = mkNixOS "iris-desktc" "x86_64-linux" {};
+    iris-dvt-ws01 = mkNixOS "iris-dvt-ws01" "x86_64-linux" {};
   };
 }
