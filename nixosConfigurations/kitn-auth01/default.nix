@@ -6,7 +6,7 @@
 {
   imports = [
     meta.nixosModules.users
-    meta.nixosModules.server
+    meta.nixosModules.base-server
 
     ./hw.nix
     ./services/nginx.nix

@@ -1,13 +1,32 @@
 {
   outputs = { flake-parts, ... } @ inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-      imports = [
-        ./nixosModules
-        ./nixosConfigurations
-        ./homeConfigurations
-      ];
-    };
+    flake-parts.lib.mkFlake { inherit inputs; moduleLocation = ./flake.nix; }
+    ({ ... }:
+      let
+        std = import ./std { inherit inputs; };
+        subdirAttrs =
+          with builtins;
+          with inputs.nixpkgs.lib;
+          listToAttrs (map
+            (x: nameValuePair x (std.importSubdirs { baseDir = ./. + "/${x}"; }))
+            [ "nixosModules" "homeConfigurations" ]);
+
+      in
+      {
+        systems = [ "x86_64-linux" "aarch64-linux" ];
+        imports = [
+          ./std/flake-module.nix
+          ./nixosConfigurations
+        ];
+
+        flake = subdirAttrs // {
+          overlays.default = import ./packages/overlay.nix { inherit inputs; };
+        };
+
+        perSystem = { pkgs, ... }: {
+          packages = import ./packages { inherit inputs; } pkgs;
+        };
+      });
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
