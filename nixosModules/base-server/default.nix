@@ -6,8 +6,6 @@
 
 {
   imports = [
-    meta.nixosModules.base-server
-
     ./networking.nix
     ./security.nix
     ./nginx.nix

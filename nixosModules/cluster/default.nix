@@ -1,6 +1,7 @@
 { config
 , pkgs
 , lib
+, std
 , ...
 }:
 
@@ -29,77 +30,91 @@ in
     };
   };
 
-  config = mkIf cfg.enable (mkMerge [
-    {
-      iris.allowUnfreePackages = [
-        "nomad"
-        "consul"
+  config = {
+    iris.allowUnfreePackages = optionals cfg.enable [
+      "nomad"
+      "consul"
+    ];
+
+    virtualisation.containers.enable = mkIf cfg.enable (mkForce true);
+    virtualisation.docker.enable = mkIf cfg.enable (mkForce true);
+
+    systemd.services.consul = mkIf cfg.enable {
+      serviceConfig.Type = "notify";
+    };
+
+    services.consul = mkIf cfg.enable {
+      enable = true;
+      dropPrivileges = false;
+
+      webUi = mkIf cfg.isController true;
+
+      forceAddrFamily = "ipv4";
+      extraConfig = (mkMerge [
+        {
+          client_addr = "{{ GetInterfaceIP \"tailscale0\" }}";
+          advertise_addr = "{{ GetInterfaceIP \"tailscale0\" }}";
+
+          datacenter = cfg.datacenter;
+          retry_join = [ "consul.service.${cfg.datacenter}.dc.consul" ];
+          connect.enabled = true;
+
+          addresses = {
+            grpc = "{{ GetInterfaceIP \"tailscale0\" }} unix:///run/consul-${cfg.datacenter}-grpc.sock";
+            http = "{{ GetInterfaceIP \"tailscale0\" }} unix:///run/consul-${cfg.datacenter}-http.sock";
+          };
+
+          ports = {
+            dns = 53;
+            grpc = 8502;
+          };
+        }
+
+        (mkIf cfg.isController {
+          server = true;
+          bootstrap_expect = 1;
+        })
+      ]);
+    };
+
+    systemd.services.nomad = mkIf cfg.enable {
+      serviceConfig.after = [ "consul.service" ];
+    };
+
+    services.nomad = mkIf cfg.enable {
+      enable = true;
+      enableDocker = true;
+      dropPrivileges = false;
+
+      extraPackages = with pkgs; [
+        consul
+        cni-plugins
       ];
 
-      virtualisation.containers.enable = true;
-      virtualisation.docker.enable = true;
-
-      services.consul = {
-        enable = true;
-        dropPrivileges = false;
-
-        forceAddrFamily = "ipv4";
-        interface.bind = "tailscale0";
-        interface.advertise = "tailscale0";
-
-        extraConfig = {
-          client_addr = "0.0.0.0";
+      settings = (mkMerge [
+        {
           datacenter = cfg.datacenter;
-          retry_join = "consul.service.${cfg.datacenter}.dc.consul";
-
-          connect.enabled = true;
-          ports.grpc = 8502;
-        };
-      };
-
-      services.nomad = {
-        enable = true;
-        enableDocker = true;
-        dropPrivileges = true;
-
-        extraPackages = with pkgs; [
-          consul
-          cni-plugins
-        ];
-
-        settings = {
-          datacenter = cfg.datacenter;
-          bind_addr = "0.0.0.0";
-          consul.ssl = false;
+          bind_addr = "{{ GetInterfaceIP \"tailscale0\" }}";
+          consul = {
+            ssl = false;
+            address = "unix:///run/consul-${cfg.datacenter}-http.sock";
+            grpc_address = "unix:///run/consul-${cfg.datacenter}-grpc.sock";
+          };
 
           client = {
             enabled = true;
             cni_path = "${pkgs.cni-plugins}/bin";
           };
-        };
-      };
-    }
+        }
 
-    (mkIf cfg.isController {
-      services.consul = {
-        webUi = true;
-        extraConfig = {
-          server = true;
-          bootstrap_expect = 1;
-          ports.dns = 53;
-        };
-      };
-
-      services.nomad = {
-        settings = {
+        (mkIf cfg.isController {
           client.node_pool = "controller";
-
           server = {
             enabled = true;
             bootstrap_expect = 1;
           };
-        };
-      };
-    })
-  ]);
+        })
+      ]);
+    };
+  };
 }
