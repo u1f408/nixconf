@@ -36,8 +36,13 @@ in
 {
   flake.nixosConfigurations = mkMerge [
     (mkNixOS "eeby" "x86_64-linux" {})
+    (mkNixOS "thonk" "x86_64-linux" {})
     (mkNixOS "iris-dvt-ws01" "x86_64-linux" {})
 
+    # infra VMs
     (mkNixOS "kitn-auth01" "aarch64-linux" {})
+
+    # home cluster
+    (mkNixOS "cl-ctrl01" "x86_64-linux" {})
   ];
 }

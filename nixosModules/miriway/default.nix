@@ -18,10 +18,6 @@ let
 
 in
 {
-  imports = [
-    meta.nixosModules.base-desktop
-  ];
-
   services.xserver.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.package = pkgs.unstable.mesa.drivers;

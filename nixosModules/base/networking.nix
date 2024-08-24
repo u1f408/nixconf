@@ -5,6 +5,7 @@
 
 {
   networking.usePredictableInterfaceNames = false;
+  networking.nftables.enable = true;
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
     checkReversePath = "loose";

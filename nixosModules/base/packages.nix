@@ -1,19 +1,35 @@
-{ pkgs
+{ config
+, pkgs
+, lib
 , ...
 }:
 
-{
-  environment.systemPackages = with pkgs; [
-    vim
-    mle
-    tmux
-    htop
-    mosh
-    p7zip
-    neofetch
+with lib;
+let
+  cfg = config.iris;
 
-    usbutils
-    pciutils
-    unstable.flashprog
-  ];
+in
+{
+  options.iris = {
+    useDefaultPackages = mkEnableOption "default package set" // { default = true; }; 
+  };
+
+  config = mkIf cfg.useDefaultPackages {
+    environment.systemPackages = with pkgs; [
+      git
+      vim
+      mle
+      tmux
+      htop
+      mosh
+      p7zip
+      neofetch
+
+      usbutils
+      pciutils
+      unstable.flashprog
+
+      libarchive
+    ];
+  };
 }

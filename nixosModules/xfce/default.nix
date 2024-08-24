@@ -5,10 +5,6 @@
 }:
 
 {
-  imports = [
-    meta.nixosModules.base-desktop
-  ];
-
   services.xserver.desktopManager.xfce.enable = true;
 
   programs.thunar.enable = true;

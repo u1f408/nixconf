@@ -6,7 +6,9 @@
 
 {
   imports = [
+    meta.nixosModules.base-desktop
     meta.nixosModules.xfce
+
     ./hw.nix
   ];
 

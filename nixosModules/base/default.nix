@@ -1,30 +1,17 @@
-{ _passthru
-, inputs
+{ inputs
 , pkgs
+, lib
 , ...
 }:
 
 {
   imports = [
-    inputs.home-manager.nixosModules.default
-
-    ./agenix.nix
-    ./packages.nix
+    ./users
+    ./home-manager.nix
     ./networking.nix
-  ];
-
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-    registry.nixpkgs.flake = inputs.nixpkgs;
-    registry.nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
-  };
-
-  nixpkgs.overlays = [
-    (final: _prev: {
-      unstable = import inputs.nixpkgs-unstable {
-        system = _passthru.system;
-      };
-    })
+    ./agenix.nix
+    ./misc.nix
+    ./nix.nix
+    ./packages.nix
   ];
 }

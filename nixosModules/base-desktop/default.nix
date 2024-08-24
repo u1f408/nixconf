@@ -7,19 +7,20 @@
 
 {
   imports = [
-    meta.nixosModules.base-users
-
+    ./packages.nix
     ./networking.nix
-    ./lightdm.nix
+    ./display-manager.nix
   ];
 
   time.timeZone = lib.mkDefault "Pacific/Auckland";
   security.sudo.wheelNeedsPassword = false;
 
+  security.rtkit.enable = true;
+  services.irqbalance.enable = true;
   services.xserver.enable = true;
   hardware.opengl.enable = true;
   fonts.enableDefaultPackages = true;
-  
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -29,12 +30,4 @@
       enable = true;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    pavucontrol
-
-    firefox
-    remmina
-    xpra
-  ];
 }

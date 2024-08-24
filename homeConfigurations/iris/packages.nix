@@ -8,5 +8,7 @@
     bat
     mle
     tmux
+
+    clearlooks-phenix
   ];
 }
