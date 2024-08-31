@@ -5,7 +5,7 @@
 
 {
   boot.initrd.postDeviceCommands = ''
-    zfs rollback -r z_f2890b/local/root@blank
+    zfs rollback -r z_01ce43/local/root@blank
   '';
 
   services.openssh.hostKeys = [

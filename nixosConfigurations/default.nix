@@ -44,5 +44,6 @@ in
 
     # home cluster
     (mkNixOS "cl-ctrl01" "x86_64-linux" {})
+    (mkNixOS "cl-ctrl02" "x86_64-linux" {})
   ];
 }

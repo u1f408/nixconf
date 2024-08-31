@@ -51,6 +51,9 @@ in
 
         (mkIf cfg.isController {
           server = true;
+        })
+
+        (mkIf cfg.isBootstrapNode {
           bootstrap_expect = 1;
         })
       ]);

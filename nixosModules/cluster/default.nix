@@ -23,6 +23,14 @@ with lib;
         Whether this node should run the cluster controller services
       '';
     };
+
+    isBootstrapNode = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Whether this node should bootstrap Consul/Nomad
+      '';
+    };
   };
 
   imports = [

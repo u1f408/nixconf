@@ -58,7 +58,6 @@ in
           client.node_pool = "controller";
           server = {
             enabled = true;
-            bootstrap_expect = 1;
           };
 
           vault = {
@@ -66,6 +65,10 @@ in
             address = "http://vault.service.consul:8200";
             create_from_role = "nomad-cluster";
           };
+        })
+
+        (mkIf cfg.isBootstrapNode {
+          server.bootstrap_expect = 1;
         })
       ]);
 
