@@ -20,6 +20,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    obs-studio
     gamescope
     steam-small
   ];

@@ -9,6 +9,10 @@
     mle
     tmux
 
+    jq
+    python3
+    keychain
+
     clearlooks-phenix
   ];
 }

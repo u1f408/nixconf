@@ -1,4 +1,5 @@
 { _passthru
+, meta
 , config
 , inputs
 , pkgs
@@ -42,6 +43,8 @@ in
 
     nixpkgs = {
       overlays = [
+        meta.overlays.default
+
         (final: _prev: {
           unstable = import inputs.nixpkgs-unstable {
             system = _passthru.system;

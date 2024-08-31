@@ -8,5 +8,7 @@
     comic-mono
     comic-neue
     comic-relief
+
+    font-awesome_5
   ];
 }

@@ -13,16 +13,26 @@
   environment.systemPackages = with pkgs; [
     xfce.xfce4-terminal
     labwc-tweaks
-    wlr-randr
+    wl-clipboard
+    wtype
 
     brightnessctl
-    waypaper
+    wlr-randr
+    kanshi
+    wvkbd
+
+    chayang
+    swayidle
+    swaylock
+    wlopm
+
     swaybg
-    sfwbar
     yambar
-    bemenu
     mako    
     wofi
+
     grim
+    slurp
+    swappy
   ];
 }

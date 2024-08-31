@@ -6,4 +6,5 @@ let
 
 in
 {
+  iris-scripts = pkgs.callPackage ./iris-scripts {};
 }

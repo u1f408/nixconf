@@ -16,6 +16,8 @@ in
 
   config = mkIf cfg.useDefaultPackages {
     environment.systemPackages = with pkgs; [
+      iris-scripts
+
       git
       vim
       mle
