@@ -1,26 +1,25 @@
-{ config
+{ pkgs
 , lib
-, pkgs
 , ...
 }:
 
 {
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "ohci_pci" "ehci_pci" "uas" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.kernelParams = [ "iommu=pt" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "ehci_pci" "uas" "usbhid" "sd_mod" ];
 
   fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/298d6047-79ab-4f5b-9a9c-6e583f320147";
-      fsType = "xfs";
-    };
+    "/" = { device = "z_f2890b/local/root"; fsType = "zfs"; };
+    "/nix" = { device = "z_f2890b/local/nix"; fsType = "zfs"; };
+    "/home" = { device = "z_f2890b/safe/home"; fsType = "zfs"; };
+    "/root" = { device = "z_f2890b/safe/home/root"; fsType = "zfs"; };
+    "/persist" = { device = "z_f2890b/safe/persist"; fsType = "zfs"; };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/3516-57B1";
+      device = "/dev/disk/by-uuid/C979-D9B6";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };

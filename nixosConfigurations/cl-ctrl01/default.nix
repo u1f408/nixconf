@@ -12,12 +12,15 @@
     ./hw.nix
   ];
 
+  networking.hostId = "c1f2890b";
+
   iris.cluster = {
     enable = true;
     isController = true;
     datacenter = "home";
   };
 
+  systemd.network.wait-online.enable = false;
   systemd.network.networks."eth0" = {
     matchConfig = { Name = "eth0"; };
     address = [ "10.42.162.10/16" ];
