@@ -4,6 +4,8 @@
 
 {
   home.packages = with pkgs; [
+    u1f408-x
+
     git
     bat
     mle

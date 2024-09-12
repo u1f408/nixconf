@@ -3,9 +3,11 @@
 }:
 
 {
-  iris.allowUnfreePackages = [ "zoom" "zoom-us" ];
+  iris.allowUnfreePackages = [ "zoom" "zoom-us" "winbox" ];
 
   environment.systemPackages = with pkgs; [
+    winbox4
+
     pavucontrol
     papers
     mupdf

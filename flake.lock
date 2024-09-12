@@ -93,11 +93,11 @@
     "iris-dotcfg": {
       "flake": false,
       "locked": {
-        "lastModified": 1725099654,
-        "narHash": "sha256-Ow+kXR8leZxfHCDc2P2ZwpdMNucC/tXgcULJMnoH1aA=",
+        "lastModified": 1726133488,
+        "narHash": "sha256-gUAo7epY4pAN/Yo4LKe0WNVi9DXz3ei9FBACfq7BN+o=",
         "owner": "u1f408",
         "repo": "dotcfg",
-        "rev": "b20d90cb4be1550238bd153b3b3a1cef8b56945c",
+        "rev": "340554358ca3bfd5a2368c2728b0949ff03543ef",
         "type": "github"
       },
       "original": {
