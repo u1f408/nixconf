@@ -11,6 +11,14 @@ let
   cfg = config.iris;
   knownUsers = (import ./users.nix) args;
 
+  mkHomeManager = user:
+    { meta, ... }@args: {
+      imports = [
+        meta.homeModules.base
+        meta.homeConfigurations."${user}"
+      ];
+    };
+
 in
 {
   options.iris = {
@@ -36,6 +44,6 @@ in
         };
       };
 
-    home-manager.users = mapAttrs (user: desc: (mkIf desc.useHomeManager (meta.homeConfigurations."${user}" args))) knownUsers;
+    home-manager.users = mapAttrs (user: desc: (mkIf desc.useHomeManager (mkHomeManager user args))) knownUsers;
   };
 }

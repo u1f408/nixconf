@@ -9,7 +9,7 @@
           with inputs.nixpkgs.lib;
           listToAttrs (map
             (x: nameValuePair x (std.importSubdirs { baseDir = ./. + "/${x}"; }))
-            [ "nixosModules" "homeConfigurations" ]);
+            [ "nixosModules" "homeModules" "homeConfigurations" ]);
 
       in
       {
