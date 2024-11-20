@@ -10,8 +10,22 @@
     "net.ipv6.conf.all.forwarding" = 1;
   };
 
-  systemd.network.enable = true;
   networking.useDHCP = lib.mkForce false;
+  systemd.network.enable = true;
+
+  services.networkd-dispatcher = {
+    enable = true;
+    rules = {
+      "udp-gro-forwarding" = {
+        onState = [ "routable" ];
+        script = ''
+          #! ${pkgs.runtimeShell}
+          netdev=`${pkgs.iproute2}/bin/ip -o route get 8.8.8.8 | cut -f 5 -d ' '`
+          ${pkgs.ethtool}/bin/ethtool -K $netdev rx-udp-gro-forwarding on rx-gro-list off
+        '';
+      };
+    };
+  };
 
   services.tailscale.extraUpFlags = [ "--ssh" ];
 }
