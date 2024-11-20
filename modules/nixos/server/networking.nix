@@ -24,6 +24,16 @@
           ${pkgs.ethtool}/bin/ethtool -K $netdev rx-udp-gro-forwarding on rx-gro-list off
         '';
       };
+
+      "ipoib-connected" = {
+        onState = [ "configuring" ];
+        script = ''
+          #! ${pkgs.runtimeShell}
+          test -d "/sys/class/net/$IFACE/device/infiniband" || exit
+          echo connected > "/sys/class/net/$IFACE/mode"
+          ${pkgs.iproute2}/bin/ip -o link set mtu 65520 dev "$IFACE"
+        '';
+      };
     };
   };
 

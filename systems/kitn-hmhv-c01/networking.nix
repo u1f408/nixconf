@@ -4,6 +4,8 @@
 }:
 
 {
+  networking.firewall.trustedInterfaces = [ "ib0" ];
+
   hardware.infiniband = {
     enable = true;
     guids = [ "0x5065f3ffff8888a1" "0x5065f3ffff8888a2" ];
