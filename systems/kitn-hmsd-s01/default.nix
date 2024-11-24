@@ -10,13 +10,10 @@
     meta.nixosModules.virt
 
     ./hw.nix
+    ./storage.nix
     ./networking.nix
   ];
 
-  boot.zfs.extraPools = [
-    "z_79f228"
-  ];
-
-  networking.hostId = "3ac9db8f";
+  networking.hostId = "3ac6efa3";
   system.stateVersion = "24.05";
 }

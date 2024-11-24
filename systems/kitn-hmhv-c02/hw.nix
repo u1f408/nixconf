@@ -18,6 +18,7 @@
     efi.canTouchEfiVariables = lib.mkForce false;
   };
 
+  boot.supportedFilesystems.zfs = true;
   boot.kernelParams = [ "intel_iommu=on" "iommu=pt" "mitigations=off" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.initrd.availableKernelModules = [ "ehci_pci" "isci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
