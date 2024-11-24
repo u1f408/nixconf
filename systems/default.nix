@@ -1,10 +1,11 @@
 { inputs
 , self
+, std
 , ...
 }:
 
+with std;
 with builtins;
-with self.lib;
 with inputs.nixpkgs.lib;
 
 {
