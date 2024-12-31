@@ -9,8 +9,9 @@
     "z_bd53c8"
   ];
 
-  services.nfs.server = {
-    enable = true;
+  services.nfs = {
+    server.enable = true;
+    settings.nfsd.rdma = "nfsrdma";
   };
 
   services.samba = {

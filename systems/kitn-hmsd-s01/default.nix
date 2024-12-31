@@ -12,6 +12,9 @@
     ./hw.nix
     ./storage.nix
     ./networking.nix
+
+    ./services/jellyfin.nix
+    ./services/transmission.nix
   ];
 
   networking.hostId = "3ac6efa3";

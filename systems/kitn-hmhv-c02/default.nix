@@ -10,6 +10,7 @@
     meta.nixosModules.virt
 
     ./hw.nix
+    ./storage.nix
     ./networking.nix
   ];
 
