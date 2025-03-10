@@ -4,4 +4,5 @@
 }:
 
 {
+  nixpkgs.config.allowUnfree = true;
 }

@@ -7,10 +7,14 @@
 }:
 
 {
+  imports = [
+    inputs.lix-module.nixosModules.default
+  ];
+
   nix = {
-    package = pkgs.nix;
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
+      home-manager.flake = inputs.home-manager;
     };
 
     settings = {

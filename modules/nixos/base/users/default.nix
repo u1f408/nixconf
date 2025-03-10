@@ -34,11 +34,11 @@ let
     { meta, ... }@toplevel: {
       imports =
         [
-          meta.homeModules.base
+          meta.homeManagerModules.base
         ]
         ++ (if (desc ? homeManagerPaths)
           then desc.homeManagerPaths
-          else [ meta.homeConfigurations."${user}" ])
+          else [ meta.homeManagerUsers."${user}" ])
         ;
     };
 
