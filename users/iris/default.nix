@@ -6,6 +6,7 @@
 {
   imports = [
     ./git.nix
+    ./ssh.nix
     ./tmux.nix
     ./shell.nix
     ./fonts.nix

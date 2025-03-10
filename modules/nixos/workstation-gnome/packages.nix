@@ -5,5 +5,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    gnome-tweaks
+    apple-cursor
   ];
 }

@@ -3,9 +3,17 @@
 , ...
 }:
 
+with lib;
+with builtins;
+
+let
+  cfg = config.u1f408;
+
+in
 {
   imports = [
     meta.nixosModules.hw-refind-preboot
+    meta.nixosModules.hw-laptop
 
     ./users
     ./nix.nix
@@ -14,10 +22,19 @@
     ./home-manager.nix
   ];
 
-  time.timeZone = lib.mkDefault "Etc/UTC";
-  boot.tmp.useTmpfs = lib.mkDefault true;
-  boot.tmp.cleanOnBoot = lib.mkDefault true;
+  options.u1f408 = {
+    machineClass = mkOption {
+      type = with types; enum [ "desktop" "laptop" "server" ];
+      default = "desktop";
+    };
+  };
 
-  services.dbus.implementation = "broker";
-  zramSwap.algorithm = "lz4";
+  config = {
+    time.timeZone = lib.mkDefault "Etc/UTC";
+    boot.tmp.useTmpfs = lib.mkDefault true;
+    boot.tmp.cleanOnBoot = lib.mkDefault true;
+
+    services.dbus.implementation = "broker";
+    zramSwap.algorithm = "lz4";
+  };
 }

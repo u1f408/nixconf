@@ -1,9 +1,11 @@
-{ lib
+{ config
 , meta
+, lib
 , ...
 }:
 
 {
-  services.tlp.enable = true;
-  services.thermald.enable = true;
+  config = lib.mkIf (config.u1f408.machineClass == "laptop") {
+    services.thermald.enable = true;
+  };
 }

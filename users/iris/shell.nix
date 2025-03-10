@@ -38,13 +38,6 @@
     };
   };
 
-  programs.keychain = {
-    enable = true;
-    enableFishIntegration = true;
-    inheritType = "local";
-    keys = [ "id_rsa" "id_ed25519" ];
-  };
-
   programs.bat = {
     enable = true;
     config = {

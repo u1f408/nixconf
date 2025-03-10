@@ -11,6 +11,8 @@
     ./metrics.nix
   ];
 
+  u1f408.machineClass = lib.mkDefault "server";
+
   boot.supportedFilesystems = {
     nfs = lib.mkForce true;
     zfs = lib.mkDefault true;
