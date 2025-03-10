@@ -13,6 +13,10 @@ with inputs.nixpkgs.lib;
     # personal machines
     (mkNixOS "lumpy" "x86_64-linux" {})
 
+    # work machines
+    (mkNixOS "ghost" "x86_64-linux" {})
+    (mkNixOS "arion" "x86_64-linux" {})
+
     # home servers
     (mkNixOS "kitn-hmsd-s01" "x86_64-linux" {})
     (mkNixOS "kitn-hmhv-c01" "x86_64-linux" {})

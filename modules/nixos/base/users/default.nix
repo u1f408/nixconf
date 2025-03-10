@@ -10,14 +10,11 @@ with lib;
 let
   cfg = config.u1f408.immutableUsers;
   knownUsers = import cfg.userDescs toplevel;
-  adminGroups = mkMerge [
-    [
-      "wheel"
-      "systemd-journal"
-    ]
-    cfg.extraAdminGroups
-    (mkIf config.networking.networkmanager.enable [ "networkmanager" ])
-  ];
+  adminGroups =
+    [ "wheel" "systemd-journal" ]
+    ++ cfg.extraAdminGroups
+    ++ lib.optional config.networking.networkmanager.enable "networkmanager"
+    ;
 
   mkUserDesc = user: desc: {
     inherit (desc) uid hashedPassword;
