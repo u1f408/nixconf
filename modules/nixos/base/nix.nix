@@ -1,5 +1,5 @@
-{ _passthru
-, inputs
+{ inputs
+, config
 , meta
 , pkgs
 , lib
@@ -14,6 +14,7 @@
   nix = {
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
+      nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
       home-manager.flake = inputs.home-manager;
     };
 
@@ -32,6 +33,12 @@
   nixpkgs = {
     overlays = [
       meta.overlays.default
+      (final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit (prev) system;
+          inherit (config.nixpkgs) config;
+        };
+      })
     ];
   };
 
