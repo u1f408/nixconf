@@ -13,8 +13,6 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernelModules = [ "kvm-amd" ];
-
-    initrd.kernelModules = [ "nvidia" ];
     blacklistedKernelModules = [ "nouveau" "amdgpu" ];
 
     extraModulePackages = with config.boot.kernelPackages; [
@@ -33,7 +31,7 @@
       device = "/dev/disk/by-uuid/a7f73760-b448-45b9-93af-988eba2cb5b2";
     };
 
-    kernelModules = [ "dm-snapshot" ];
+    kernelModules = [ "nvidia" "dm-snapshot" ];
     availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "uas" "sd_mod" ];
   };
 
