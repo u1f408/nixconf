@@ -7,7 +7,7 @@
   services.displayManager = {
     enable = true;
     sddm = {
-      enable = true;
+      enable = lib.mkDefault true;
       wayland.enable = true;
     };
   };

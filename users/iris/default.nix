@@ -4,16 +4,15 @@
 }:
 
 {
-  home.packages = with pkgs; [
-    u1f408-x
-    python3
-    keychain
-    jq
-    git
-    bat
-    mle
-    tmux
+  imports = [
+    ./git.nix
+    ./shell.nix
+    ./fonts.nix
+    ./browser.nix
+    ./packages.nix
+    ./vscode.nix
+    ./obs-studio.nix
   ];
 
-  home.stateVersion = "23.11";
+  home.stateVersion = lib.mkDefault "23.11";
 }

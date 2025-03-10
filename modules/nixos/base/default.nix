@@ -5,9 +5,9 @@
 
 {
   imports = [
-    meta.nixosModules.users
-    meta.nixosModules.refind-preboot
+    meta.nixosModules.hw-refind-preboot
 
+    ./users
     ./nix.nix
     ./packages.nix
     ./networking.nix

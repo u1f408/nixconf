@@ -7,21 +7,29 @@
 }:
 
 {
-  config = {
-    nix = {
-      package = pkgs.nix;
-      settings.experimental-features = [ "nix-command" "flakes" ];
-      registry = {
-        nixpkgs.flake = inputs.nixpkgs;
-      };
+  nix = {
+    package = pkgs.nix;
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
     };
 
-    nixpkgs = {
-      overlays = [
-        meta.overlays.default
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
-
-    systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
   };
+
+  nixpkgs = {
+    overlays = [
+      meta.overlays.default
+    ];
+  };
+
+  systemd.services.nix-daemon.environment.TMPDIR = "/var/tmp";
 }

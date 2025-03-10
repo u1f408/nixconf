@@ -9,33 +9,50 @@ with lib;
 
 let
   cfg = config.u1f408.immutableUsers;
-  knownUsers = import ./users.nix toplevel;
-  adminGroups = [ "wheel" "systemd-journal" ] ++ cfg.extraAdminGroups;
+  knownUsers = import cfg.userDescs toplevel;
+  adminGroups = mkMerge [
+    [
+      "wheel"
+      "systemd-journal"
+    ]
+    cfg.extraAdminGroups
+    (mkIf config.networking.networkmanager.enable [ "networkmanager" ])
+  ];
 
   mkUserDesc = user: desc: {
     inherit (desc) uid hashedPassword;
     isNormalUser = true;
+    description = if (desc ? description) then desc.description else null;
     shell = if (desc ? shell) then desc.shell else pkgs.bash;
-    openssh.authorizedKeys.keyFiles = [ "${meta}/users/${user}/authorized_keys" ];
+    openssh.authorizedKeys.keyFiles = if (desc ? sshKeyFiles) then desc.sshKeyFiles else [];
     extraGroups = mkMerge [
       (mkIf (desc ? isAdmin) adminGroups)
     ];
   };
 
-  mkHomeManager = user:
+  mkHomeManager = { user, desc, ... }:
     { meta, ... }@toplevel: {
-      imports = [
-        meta.homeModules.base
-        meta.homeConfigurations."${user}"
-      ];
+      imports =
+        [
+          meta.homeModules.base
+        ]
+        ++ (if (desc ? homeManagerPaths)
+          then desc.homeManagerPaths
+          else [ meta.homeConfigurations."${user}" ])
+        ;
     };
 
 in
 {
   options.u1f408.immutableUsers = {
     enable = mkEnableOption "immutable user configuration" // { default = true; };
+    userDescs = mkOption {
+      type = types.path;
+      default = ./users.nix;
+    };
+
     extraAdminGroups = mkOption {
-      type = types.listOf types.str;
+      type = with types; listOf str;
       default = [];
     };
   };
@@ -48,14 +65,14 @@ in
           initialHashedPassword = "";
           openssh.authorizedKeys.keyFiles =
             (flatten (attrValues (mapAttrs
-              (user: desc: if desc.isAdmin then [ "${meta}/users/${user}/authorized_keys" ] else [ ])
+              (user: desc: if desc.isAdmin then desc.sshKeyFiles else [])
               knownUsers)));
         };
       };
 
     home-manager.users =
       (mapAttrs
-        (user: desc: mkIf desc.useHomeManager (mkHomeManager user toplevel))
+        (user: desc: mkIf desc.homeManagerEnable (mkHomeManager { inherit user desc; } toplevel))
         knownUsers);
   };
 }

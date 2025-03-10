@@ -9,7 +9,7 @@ with lib;
 let
   cfg = config.u1f408.refind-preboot;
   configText = pkgs.writeText "refind-preboot.conf" ''
-    timeout 2    
+    timeout 2
     hideui banner
     hideui hints
 

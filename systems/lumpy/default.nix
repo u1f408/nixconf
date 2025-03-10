@@ -6,7 +6,8 @@
 
 {
   imports = [
-    meta.nixosModules.laptop
+    meta.nixosModules.hw-laptop
+    meta.nixosModules.workstation
 
     ./hw.nix
   ];
