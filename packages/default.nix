@@ -2,9 +2,9 @@
 
 with pkgs.lib;
 rec {
-  remotedesktopmanager = pkgs.callPackage ./remotedesktopmanager {};
-
   u1f408-x = pkgs.callPackage ./u1f408-x {};
   opencore-drivers = pkgs.callPackage ./opencore/drivers.nix {};
+  remotedesktopmanager = pkgs.callPackage ./remotedesktopmanager {};
 
+  qemu-woa = pkgs.callPackage ./qemu-woa {};
 }
