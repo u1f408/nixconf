@@ -13,6 +13,7 @@
     ./storage.nix
     ./networking.nix
 
+    ./services/miniflux.nix
     ./services/jellyfin.nix
     ./services/transmission.nix
   ];

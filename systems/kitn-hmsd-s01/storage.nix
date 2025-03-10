@@ -9,6 +9,8 @@
     "z_bd53c8"
   ];
 
+  networking.firewall.allowedTCPPorts = [ 2049 ];
+
   services.nfs = {
     server.enable = true;
     settings.nfsd.rdma = "nfsrdma";
