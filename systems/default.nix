@@ -17,6 +17,9 @@ with inputs.nixpkgs.lib;
     (mkNixOS "ghost" "x86_64-linux" {})
     (mkNixOS "arion" "x86_64-linux" {})
 
+    # infra
+    (mkNixOS "kitn-coord01" "x86_64-linux" {})
+
     # home servers
     (mkNixOS "kitn-hmsd-s01" "x86_64-linux" {})
     (mkNixOS "kitn-hmhv-c01" "x86_64-linux" {})
