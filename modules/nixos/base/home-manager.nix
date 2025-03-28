@@ -1,4 +1,5 @@
 { inputs
+, config
 , ...
 }@toplevel:
 
@@ -12,6 +13,7 @@
     useUserPackages = true;
     extraSpecialArgs = {
       inherit (toplevel) inputs meta _passthru;
+      inherit (config.u1f408) machineClass;
     };
   };
 }

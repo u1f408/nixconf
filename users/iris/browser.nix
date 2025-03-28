@@ -1,19 +1,22 @@
-{ pkgs
+{ machineClass
+, pkgs
 , lib
 , ...
 }:
 
 {
-  programs.firefox = {
-    enable = true;
-  };
+  config = lib.mkIf (machineClass != "server") {
+    programs.firefox = {
+      enable = true;
+    };
 
-  programs.chromium = {
-    enable = true;
-    package = pkgs.ungoogled-chromium;
-    extensions = [
-      # ublock origin
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
-    ];
+    programs.chromium = {
+      enable = true;
+      package = pkgs.ungoogled-chromium;
+      extensions = [
+        # ublock origin
+        { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
+      ];
+    };
   };
 }

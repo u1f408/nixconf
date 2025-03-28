@@ -19,7 +19,7 @@ let
   mkUserDesc = user: desc: {
     inherit (desc) uid hashedPassword;
     isNormalUser = true;
-    description = if (desc ? description) then desc.description else null;
+    description = if (desc ? description) then desc.description else "";
     shell = if (desc ? shell) then desc.shell else pkgs.bash;
     openssh.authorizedKeys.keyFiles = if (desc ? sshKeyFiles) then desc.sshKeyFiles else [];
     extraGroups = mkMerge [
