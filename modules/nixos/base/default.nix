@@ -1,4 +1,5 @@
-{ meta
+{ inputs
+, meta
 , lib
 , ...
 }:
@@ -12,6 +13,8 @@ let
 in
 {
   imports = [
+    inputs.agenix.nixosModules.default
+
     meta.nixosModules.hw-refind-preboot
     meta.nixosModules.hw-laptop
 

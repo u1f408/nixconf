@@ -31,6 +31,8 @@
   };
 
   nixpkgs = {
+    config.allowUnfree = true;
+
     overlays = [
       meta.overlays.default
       (final: prev: {
