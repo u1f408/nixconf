@@ -63,7 +63,7 @@
 
       dns = {
         magic_dns = true;
-        base_domain = "hsi.soupnet.cc";
+        base_domain = "hs.soupnet.cc";
         nameservers.global = [ "1.1.1.1" "1.0.0.1" ];
       };
 
