@@ -21,5 +21,9 @@ in
       remmina
       bitwarden
     ]))
+
+    (lib.mkIf (with lib; any (f: f == "gui-local") machineUsage) (with pkgs; [
+      parsec-bin
+    ]))
   ];
 }
