@@ -16,7 +16,8 @@ in
       plugins = with pkgs.obs-studio-plugins; [
         obs-pipewire-audio-capture
         obs-shaderfilter
-        obs-nvfbc
+        obs-vaapi
+        obs-ndi
       ];
     };
   };
