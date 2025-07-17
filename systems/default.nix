@@ -12,6 +12,7 @@ with inputs.nixpkgs.lib;
   flake.nixosConfigurations = mkMerge [
     # personal machines
     (mkNixOS "lumpy" "x86_64-linux" {})
+    (mkNixOS "catdesk" "x86_64-linux" {})
 
     # work machines
     (mkNixOS "ghost" "x86_64-linux" {})

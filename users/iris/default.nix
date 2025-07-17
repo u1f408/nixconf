@@ -12,7 +12,6 @@
     ./fonts.nix
     ./browser.nix
     ./packages.nix
-    ./vscode.nix
     ./obs-studio.nix
   ];
 

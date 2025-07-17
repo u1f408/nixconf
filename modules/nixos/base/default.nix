@@ -30,6 +30,16 @@ in
       type = with types; enum [ "desktop" "laptop" "server" ];
       default = "desktop";
     };
+
+    machineUsage = mkOption {
+      type = with types; listOf (enum [
+        "gui-local"
+        "gui-xrdp"
+        "av"
+      ]);
+
+      default = [];
+    };
   };
 
   config = {

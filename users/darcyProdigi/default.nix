@@ -13,6 +13,7 @@
 
     ./git.nix
     ./packages.nix
+    ./vscode.nix
   ];
 
   home.stateVersion = lib.mkForce "24.11";

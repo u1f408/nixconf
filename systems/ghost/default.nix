@@ -14,6 +14,11 @@
     ./hw.nix
   ];
 
+  u1f408 = {
+    machineClass = "desktop";
+    machineUsage = [ "gui-local" "av" ];
+  };
+
   nixpkgs.config.allowUnfree = true;
   services.openssh.openFirewall = lib.mkForce true;
   services.printing.enable = true;

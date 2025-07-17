@@ -16,7 +16,11 @@
     ./persist.nix
   ];
 
-  u1f408.machineClass = "laptop";
+  u1f408 = {
+    machineClass = "laptop";
+    machineUsage = [ "gui-local" "av" ];
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   networking.hostId = "2a7ad309";
