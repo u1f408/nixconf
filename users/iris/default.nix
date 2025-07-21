@@ -12,6 +12,7 @@
     ./fonts.nix
     ./browser.nix
     ./packages.nix
+    ./terminal.nix
     ./obs-studio.nix
   ];
 

@@ -9,6 +9,7 @@
     ./security.nix
     ./displayManager.nix
     ./pipewire.nix
+    ./flatpak.nix
   ];
 
   time.timeZone = "Pacific/Auckland";

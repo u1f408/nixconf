@@ -16,6 +16,9 @@ in
     };
 
     home.packages = with pkgs; [
+      nerd-fonts."m+"
+      nerd-fonts.shure-tech-mono
+      nerd-fonts.comic-shanns-mono
       comic-mono
       openmoji-black
       openmoji-color

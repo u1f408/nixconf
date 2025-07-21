@@ -14,12 +14,17 @@ in
       mle
       fzf
       tmux
+      flow-control
+      inetutils
+      dnsutils
+      usbutils
     ])
 
     (lib.mkIf (with lib; any (f: hasPrefix "gui-" f) machineUsage) (with pkgs; [
-      roxterm
+      kitty
       remmina
       bitwarden
+      galculator
     ]))
 
     (lib.mkIf (with lib; any (f: f == "gui-local") machineUsage) (with pkgs; [

@@ -11,13 +11,22 @@
     xdgmenumaker
     windowmaker
     apple-cursor
+    mesa-demos
+    xscreensaver
   ];
+
+  hardware.graphics = {
+    enable = lib.mkForce true;
+    enable32Bit = lib.mkDefault true;
+  };
 
   services.xserver.enable = lib.mkForce false;
   services.displayManager.enable = lib.mkForce false;
   services.displayManager.sddm.enable = lib.mkForce false;
   services.pulseaudio.enable = lib.mkForce true;
   services.pipewire.enable = lib.mkForce false;
+
+  services.xscreensaver.enable = true;
 
   services.xrdp = {
     enable = true;
